@@ -1,7 +1,7 @@
 package com.momo;
 import java.util.Scanner;
 
-public class Momo {
+public class MomoCarRentSystem {
 	final int trunkNum = 2;
 	final int passCarNum = 3;
 	final int PickUpNum = 2;
