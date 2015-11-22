@@ -3,13 +3,13 @@ import java.io.IOException;
 import java.lang.Exception;
 
 public class ThrowsTest {
-	//如果一个方法可能会出现异常，但是没有能力处理这种异常，可以在方法声明处用throws子句来声明抛出异常。
+//	//如果一个方法可能会出现异常，但是没有能力处理这种异常，可以在方法声明处用throws子句来声明抛出异常。
 //	static void pop() throws NegativeArraySizeException{
 //		//当方法抛出异常列表的异常时，方法将不对这些类型及其子类型的异常做处理，
 //		//而是抛向调用该方法的方法，由他去处理
 //		int[] arr = new int[-3];
 //	}
-	
+//	
 //	public static void main(String[] args) {
 //		try{
 //			pop();
@@ -80,6 +80,5 @@ class MyException extends Exception{
 	
 	public String getMessage(){
 		return message;
-	} 
-	
+	} 	
 }
