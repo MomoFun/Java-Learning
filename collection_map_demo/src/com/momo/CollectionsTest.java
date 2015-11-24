@@ -124,9 +124,9 @@ public class CollectionsTest {
 
 	public static void main(String[] args) {
 		CollectionsTest ct = new CollectionsTest();
-//		ct.testSort1();
-//		ct.testSort2();
-//		ct.testSort3();
+		ct.testSort1();
+		ct.testSort2();
+		ct.testSort3();
 		ct.testSort4();
 	}
 

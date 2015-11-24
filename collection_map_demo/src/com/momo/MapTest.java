@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class MapTest {
+	public Scanner console;
 	/*
 	 * 用来承装学生类型对象
 	 */
@@ -16,6 +17,7 @@ public class MapTest {
 	 */
 	public MapTest(){
 		this.students = new HashMap<String,Student>();
+		this.console =new Scanner(System.in);
 	}
 	
 	/*
@@ -23,8 +25,6 @@ public class MapTest {
 	 * 判断是否被占用，若未被占用，则输入姓名，创建新学生对象，并且添加到students中
 	 */
 	public void testPut(){
-		//创建一个Scanner对象，用来获取输入的学生ID和姓名
-		Scanner console =new Scanner(System.in);
 		int i = 0;
 		while(i < 3){
 			System.out.println("请输入学生ID：");
@@ -52,7 +52,7 @@ public class MapTest {
 	 * 测试Map的KeySet方法
 	 */
 	public void testKeySet(){
-		//同过keySet方法，返回Map中的所有“键的集合”
+		//通过keySet方法，返回Map中的所有“键的集合”
 		Set<String> keySet = students.keySet(); 
 		//取得students的容量
 		System.out.println("总共有："  + students.size() + "个学生");
@@ -70,7 +70,6 @@ public class MapTest {
 	 */
 	public void testRemove(){
 		//获取从键盘输入的学生ID字符串
-		Scanner console = new Scanner(System.in);
 		while(true){
 			//提示用户待删除学生的ID
 			System.out.println("请输入要删除的学生ID！");
@@ -80,6 +79,7 @@ public class MapTest {
 			if(st == null){
 				//提示输入的ID并不存在
 				System.out.println("该ID不存在！");
+				continue;
 			}
 			students.remove(ID);
 			System.out.println("成功删除学生：" + st.getName());
@@ -108,8 +108,6 @@ public class MapTest {
 	public void testModify(){
 		//提示输入要修改的学生ID
 		System.out.println("请输入要修改的学生ID");
-		//创建一个Scanner对象，去获取从键盘上输入的学生ID字符串
-		Scanner console = new Scanner(System.in);
 		while(true){
 			//取得从键盘输入的学生ID
 			String stuID = console.next();
@@ -137,7 +135,6 @@ public class MapTest {
 	public void testContainsKeyOrValue(){
 		//提示用户输入学生ID
 		System.out.println("请输入要查询的学生ID");
-		Scanner console = new Scanner(System.in);
 		String id = console.next();
 		//在Map中，用containsKey()方法，来判断是否包含某个Key值
 		System.out.println("您输入的学生ID为：" + id + "，在学生映射表中是否存在？" + students.containsKey(id));

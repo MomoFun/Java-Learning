@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="carRentingDemo/src/|Exception_demo/src/|collection_map_demo/src/" kind="src" path=""/>
+	<classpathentry kind="src" path="carRentingDemo/src"/>
+	<classpathentry kind="src" path="collection_map_demo/src"/>
+	<classpathentry kind="src" path="Exception_demo/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Exception_demo/bin"/>
+</classpath>

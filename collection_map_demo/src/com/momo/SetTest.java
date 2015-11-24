@@ -7,12 +7,13 @@ import java.util.Scanner;
 public class SetTest {
 	public List<Course> coursesToSelect;
 	private Scanner console;
-	public Student student;
+	public static Student student;
 	public SetTest(){
 		coursesToSelect = new ArrayList<Course>();
 		console = new Scanner(System.in);
+		student = new Student("1","沫沫");
 	}
-	
+
 	public void testAdd(){
 		//创建一个课程对象，并通过调用add方法，添加到备选课程List中
 		Course cr1 = new Course("1","数据结构");
@@ -89,10 +90,10 @@ public class SetTest {
 	
 	public void createStudentAndSelectCourse(){
 		//创建一个学生对象
-		Student student = new Student("1","沫沫");
+
 		System.out.println("欢迎学生：" + student.getName() + "选课!");
 		//创建一个Scanner对象，用来接收键盘输入的课程ID
-		Scanner console = new Scanner(System.in);
+		//Scanner console = new Scanner(System.in);
 		for(int i = 0; i < 3; i++){
 			System.out.println("请输入课程ID");
 			String courseId = console.next();
@@ -125,12 +126,12 @@ public class SetTest {
 	public static void main(String[] args) {
 		SetTest st = new SetTest();
 		st.testAdd();
-		st.testListContains();
+//		st.testListContains();
 		st.testForEach();
 
-//		st.testForEachForSet(student);
-//		st.createStudentAndSelectCourse();
-//		st.testSetContains();
+		st.testForEachForSet(student);
+		st.createStudentAndSelectCourse();
+		st.testForEachForSet(student);
 	}
 	
 	

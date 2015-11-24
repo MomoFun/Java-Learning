@@ -47,10 +47,10 @@ public class Course {
 		if (!(obj instanceof Course))
 			return false;
 		Course other = (Course) obj;
-		if (name == null) {
+		if (this.name == null) {
 			if (other.name != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!this.name.equals(other.name))
 			return false;
 		return true;
 	}	
