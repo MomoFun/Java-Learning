@@ -12,7 +12,7 @@ public class PokerProcess {
 	public List<Poker> pokerCards = new ArrayList<Poker>();
 	
 	//向pokerCards中添加扑克牌
-	public void creatPoker(){
+	public List<Poker> creatPoker(){
 		String[] type = new String[4];
 		type[0] = "黑桃";
 		type[1] = "红桃";
@@ -35,12 +35,11 @@ public class PokerProcess {
 			Poker poker = new Poker(type[m], num[n],m,n);
 			pokerCards.add(poker);
 		}
-		
-		
+		return pokerCards;
 	}
 	
 	//打印扑克牌信息
-	public void showPokers(){
+	public void showPokers(List<Poker> pokerCards){
 		System.out.print("[");
 		for (Poker poker : pokerCards) {
 			System.out.print(poker.type + poker.num + " ");

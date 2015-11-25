@@ -8,7 +8,6 @@ import java.util.List;
  * 包含两个属性：1.序号 2.花色和大小
  */
 public class Poker implements Comparable<Poker> {
-	public int sequenceNumber;
 	public String type;
 	public String num;
 	public int typeIndex;

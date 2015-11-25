@@ -6,14 +6,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-
+/*
+ * 扑克牌比大小系统
+ */
 public class PlayerProcess {
 	public Scanner console;
 	public Map<String, Player> players;
+	public static List<Poker> initPoker;
+	public static List<Poker> randomPoker;
+	public static PokerProcess pokerP = null;
+	public Set<String> playerIDs;
+
+	
 	//构造器中初始化属性
 	public PlayerProcess(){
 		this.players = new HashMap<String, Player>();
 		this.console = new Scanner(System.in);
+		pokerP = new PokerProcess();
+		initPoker = pokerP.creatPoker();
+		randomPoker = pokerP.shufflePokers();	
+		playerIDs = players.keySet();
 	}
 	/*
 	 * 创建两个玩家：输入玩家ID，判断玩家是否存在
@@ -36,28 +48,21 @@ public class PlayerProcess {
 				System.out.println("该ID已被占用，请重新输入！");
 				continue;
 			}
+			//显示玩家信息
+			System.out.println("总共有" + players.size() + "个玩家，他们的信息如下：");
+			for (String playId: playerIDs) {
+				Player plyr = players.get(playId);
+				System.out.println("玩家姓名:" + plyr.name);
+			}
 		}
 	}
-	/*
-	 * 输出玩家信息
-	 */
-	public void showPlayers(){
-		Set<String> playerIDs = players.keySet();
-		System.out.println("总共有" + players.size() + "个玩家，他们的信息如下：");
-		for (String playId: playerIDs) {
-			Player plyr = players.get(playId);
-			System.out.println("玩家姓名:" + plyr.name);
-		}
-	}
+
 	/*
 	 * 给玩家分牌
 	 * 对Player的handPockers进行操作
 	 */
 	public void dealCards(){
-		PokerProcess pokerP = new PokerProcess();
-		pokerP.creatPoker();
-		List<Poker> pokerCards = pokerP.shufflePokers();
-		Set<String> playerIDs = players.keySet();
+
 		List<Poker> maxCardsofPlayers = new ArrayList<Poker>();
 		String[] handPokerInf = new String[2];
 		int i = 0;//被分牌的序号
@@ -66,7 +71,7 @@ public class PlayerProcess {
 			List<Poker> poker = players.get(playId).handPockers;
 			int n = 0;//分牌次数
 			while(n < 2){
-				poker.add(pokerCards.get(i));
+				poker.add(randomPoker.get(i));
 				i += 2;
 				n++;
 			}
@@ -74,8 +79,20 @@ public class PlayerProcess {
 			j++;
 			i = 1;
 			
-//			System.out.println("ID:" + playId + ", Name:" + players.get(playId).name );
-//			System.out.println("手牌:[" + poker.get(0).type + poker.get(0).num + poker.get(1).type + poker.get(1).num + "]");
+//			int i = 0;//被分牌的序号
+//			int j = 0;
+//			for (String playId : playerIDs) {
+//				List<Poker> poker = players.get(playId).handPockers;
+//				int n = 0;//分牌次数
+//				while(n < 2){
+//					poker.add(randomPoker.get(i));
+//					i += 2;
+//					n++;
+//				}
+//				handPokerInf[j] =  players.get(playId).name + "的手牌为:[" + poker.get(0).type + poker.get(0).num + poker.get(1).type + poker.get(1).num + "]";
+//				j++;
+//				i = 1;
+			
 
 			Poker maxPoker;
 			if(poker.get(0).compareTo(poker.get(1)) > 0){
@@ -83,11 +100,6 @@ public class PlayerProcess {
 			}else{
 				maxPoker = poker.get(1);	
 			}
-			
-//			System.out.println("ID:" + playId + ", Name:" + players.get(playId).name );
-//			System.out.println("排序后手牌:[" + poker.get(0).type + poker.get(0).num + poker.get(1).type + poker.get(1).num + "]");
-//			System.out.println("玩家" + playId + "的最大手牌为：" + maxPoker.type + maxPoker.num);
-			
 			maxCardsofPlayers.add(maxPoker);
 		}
 		//比较两个玩家的手牌大小
@@ -101,4 +113,23 @@ public class PlayerProcess {
 			System.out.println(handPokerInf[k]);
 		}
 	}	
+	
+	public void PlayerComparison(){
+		
+	}
+	
+	public static void main(String[] args) {
+		PlayerProcess playerP = new PlayerProcess();
+		System.out.println("-----------------------------创建扑克牌-------------------------------");
+		System.out.println("---------------------------以下扑克牌被创建-----------------------------");
+		pokerP.showPokers(initPoker);
+		System.out.println("----------------------------扑克牌创建成功！----------------------------");
+		System.out.println("--------------------------------洗牌----------------------------------");
+		System.out.println("----------------------------以下是打乱后的扑克牌--------------------------");
+		pokerP.showPokers(randomPoker);
+		System.out.println("-------------------------------洗牌结束！-------------------------------");
+		System.out.println("--------------------------------创建玩家-------------------------------");
+		playerP.creatPlayers();
+		playerP.dealCards();
+	}
 }
